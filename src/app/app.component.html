@@ -1,0 +1,102 @@
+<mat-toolbar color="primary" class="navbar">
+	<div>
+		<img src="assets\images\youwe-logo-white.png">
+		<span class="spacer"></span>
+		<a href="#" mat-flat-button color="primary">Solutions</a>
+		<a href="#" mat-flat-button color="primary">Detachering</a>
+		<a href="#" mat-flat-button color="primary">Ons werk</a>
+		<a href="#" mat-flat-button color="primary">Over ons</a>
+		<a href="#" mat-flat-button color="primary">Nieuws</a>
+		<a href="#" mat-flat-button color="primary">Vacatures</a>
+		<a href="#" mat-flat-button color="primary"><u>Contact</u></a>
+	</div>
+</mat-toolbar>
+
+<mat-sidenav-container class="container">
+	<mat-sidenav mode="side" opened class="sidenav">
+		<a href="tel:010–4668638" mat-fab color="primary" class="call-button">
+			<mat-icon>phone</mat-icon>
+		</a>
+		<section class="mat-typography call-box">
+			<h3>BEL ONS OP</h3>
+			<p>010 – 466 86 38</p>
+		</section>
+	</mat-sidenav>
+	<mat-sidenav-content>
+		<header class="fancy-header">
+			<section class="mat-typography fancy-title">
+				<h1>Contact</h1>
+				<p>Get in touch</p>
+			</section>
+		</header>
+		<section class="mat-typography">
+			<h1>Direct contact?</h1>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque convallis, magna nec ecitur tempor,
+				dui eros fringilla tellus, vitae consequat augue dolor at mauris. Nunc tempor rutrum dolor, sit amet
+				scelerisque lacus feugiat non. Maecenas a tincidunt justo, ac blandit arcu. Sed nec congue ex. Nullam
+				pulvinar libero eu dolor congue commodo. Nam sed pharetra orci. Nunc ultrices sit amet magna non
+				vestibulum. Morbi ut dignissim quam. Etiam eget pellentesque nisi.
+			</p>
+		</section>
+		<form [formGroup]="messageFormGroup" class="form">
+			<table cellspacing="0">
+				<tr>
+					<td>
+						<mat-form-field>
+							<input type="text" matInput placeholder="Voornaam" formControlName="name" required>
+							<mat-error>
+								Voornaam is <strong>verplicht</strong>
+							</mat-error>
+						</mat-form-field>
+					</td>
+					<td>
+						<mat-form-field>
+							<input matInput placeholder="Achternaam" formControlName="surname" required>
+							<mat-error>
+								Achternaam is <strong>verplicht</strong>
+							</mat-error>
+						</mat-form-field>
+					</td>
+				</tr>
+			</table>
+			<mat-form-field>
+				<input matInput placeholder="Email" formControlName="email" required>
+				<mat-error
+					*ngIf="messageFormGroup.get('email').hasError('email') && !messageFormGroup.get('email').hasError('required')">
+					Gelieve een geldig e-mailadres in te geven
+				</mat-error>
+				<mat-error *ngIf="messageFormGroup.get('email').hasError('required')">
+					Email is <strong>verplicht</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput placeholder="Onderwerp" formControlName="subject" required>
+				<mat-error>
+					Onderwerp is <strong>verplicht</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<textarea matInput placeholder="Bericht" formControlName="message" required></textarea>
+				<mat-error
+					*ngIf="messageFormGroup.get('message').hasError('minlength') && !messageFormGroup.get('message').hasError('required')">
+					Het bericht is te kort. Minimale lengte is 20 letters
+				</mat-error>
+				<mat-error *ngIf="messageFormGroup.get('message').hasError('required')">
+					Bericht is <strong>verplicht</strong>
+				</mat-error>
+			</mat-form-field>
+		</form>
+		<div class="form">
+			<button class="form-button" mat-flat-button color="primary"
+				[disabled]="messageFormGroup.invalid"
+				(click)="openMessageSnackBar();messageFormGroup.reset()">Verstuur</button>
+		</div>
+		
+	</mat-sidenav-content>
+</mat-sidenav-container>
+<mat-toolbar class="footer">
+	<div>
+		<img src="assets\images\youwe-logo-white-small.png">
+		<span>Copyright Youwe<br><small>Generic contact page made by Atilio Acosta.</small></span>
+	</div>
+</mat-toolbar>
